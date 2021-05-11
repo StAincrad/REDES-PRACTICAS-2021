@@ -82,7 +82,6 @@ int main(int argc, char** argv){
 
 		size_t bytes = recv(sdClient, (void *) buffer, 79, '\0');
 		buffer[80] = '\0';
-		std::cout << buffer << std::endl;
 
 		if(bytes <= 0){
 			std::cout << "Conexión terminada\n";
