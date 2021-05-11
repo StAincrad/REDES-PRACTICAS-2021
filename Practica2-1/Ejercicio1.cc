@@ -32,7 +32,7 @@ int main(int argc, char* argv[]){
 		
 		getnameinfo(i->ai_addr, i->ai_addrlen, host, NI_MAXHOST, serv,
 				NI_MAXSERV, NI_NUMERICHOST);
-		std::cout << "Host: " << host << " Family: " << i->ai_family << 
+		std::cout << "Host: " << host << " Port: " << i->ai_family << 
 			" Socket Type: " << i->ai_socktype << std::endl;
 	}
 
