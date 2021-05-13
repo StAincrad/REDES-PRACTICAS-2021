@@ -93,6 +93,7 @@ int main(int argc, char** argv){
 	}
 	
 	//Cierre de socket
+	close(sdClient);
 	close(sd);
 
 	return 0;
