@@ -55,12 +55,12 @@ int main(int argc, char** argv){
 
 		int bytes = recvfrom(sd, (void*) buffer, 80, '\0',
 			 &cliente, &clienteLen);
-		buffer[bytes] = '\0';
-
+	
 		if(bytes == -1){
 			std::cerr << "bytes recibidos erróneos\n";
 			return -1;
 		}
+		buffer[bytes] = '\0';
 
 		getnameinfo(&cliente, clienteLen, host, NI_MAXHOST, serv, 
 			NI_MAXSERV, NI_NUMERICHOST | NI_NUMERICSERV);
@@ -72,14 +72,14 @@ int main(int argc, char** argv){
 		//Muestra la hora actual
 		case 't':
 			time(&rawtime);
-			tam = strftime(buffer, 79, "%T %p\n", localtime(&rawtime));
+			tam = strftime(buffer, 79, "%T %p", localtime(&rawtime));
 			sendto(sd, buffer, tam, '\0', &cliente, clienteLen);
 			buffer[tam] = '\0';	
 			break;
 		//Muestra la fecha actual
 		case 'd':
 			time(&rawtime);
-			tam = strftime(buffer, 79, "%F\n", localtime(&rawtime));
+			tam = strftime(buffer, 79, "%F", localtime(&rawtime));
 			sendto(sd, buffer, tam, '\0', &cliente, clienteLen);
 			buffer[tam] = '\0';
 			break;
@@ -90,7 +90,7 @@ int main(int argc, char** argv){
 			sendto(sd, "Hasta la vista :D\n", 19, 0, &cliente, clienteLen);
 			break;
 		default:
-			sendto(sd, buffer, bytes, 0, &cliente, clienteLen);
+			sendto(sd, "Comando incorrecto\n", 20, 0, &cliente, clienteLen);
 			break;
 		}
 	}
